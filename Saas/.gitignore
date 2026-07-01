@@ -1,0 +1,14 @@
+# credenciais
+config.properties
+.env
+
+# build
+target/
+bin/
+*.class
+
+# IDE
+.vscode/
+.settings/
+.classpath
+.project
