@@ -1,4 +1,4 @@
-package model;
+package cursos.model;
 import java.util.Date;
 
 public class Matricula {

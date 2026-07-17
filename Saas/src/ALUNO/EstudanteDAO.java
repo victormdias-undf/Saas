@@ -1,7 +1,8 @@
+package aluno;
+import connection.integracaoBanco;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class EstudanteDAO {
 
@@ -11,7 +12,7 @@ public class EstudanteDAO {
 
 
         try {
-            Connection conexao = ConexaoBanco.getConnection();
+            Connection conexao = integracaoBanco.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
 
@@ -38,7 +39,7 @@ public class EstudanteDAO {
 
 
         try {
-            Connection conexao = ConexaoBanco.getConnection();
+            Connection conexao = integracaoBanco.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
 
@@ -85,7 +86,7 @@ public class EstudanteDAO {
 
 
         try {
-            Connection conexao = ConexaoBanco.getConnection();
+            Connection conexao = integracaoBanco.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
 
@@ -125,7 +126,7 @@ public class EstudanteDAO {
 
 
         try {
-            Connection conexao = ConexaoBanco.getConnection();
+            Connection conexao = integracaoBanco.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
 
@@ -152,7 +153,7 @@ public class EstudanteDAO {
 
 
         try {
-            Connection conexao = ConexaoBanco.getConnection();
+            Connection conexao = integracaoBanco.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
 
@@ -180,7 +181,7 @@ public class EstudanteDAO {
 
 
         try {
-            Connection conexao = ConexaoBanco.getConnection();
+            Connection conexao = integracaoBanco.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
 

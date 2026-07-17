@@ -1,18 +1,18 @@
-package DAO;
+package cursos.DAO;
 
+import connection.integracaoBanco;
+import cursos.model.Matricula;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import model.Matricula;
-
 public class MatriculaDAO {
 
     public void inserirMatricula(Matricula matricula) {
         String sql = "INSERT INTO matricula (estudante_matricula, curso_codigo, data_matricula) VALUES (?, ?, ?)";
 
         // Agora usamos Conexao.getConnection() em vez de DriverManager...
-        try (Connection conn = Conexao.conectar(); 
+        try (Connection conn = integracaoBanco.conectar(); 
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, matricula.getEstudante_matricula());

@@ -1,10 +1,10 @@
-package model;
+package cursos.model;
 
 public class Curso {
-    private String codigo;
-    private String nome_curso;
-    private int carga_horaria;
-    private String professor_matricula;
+    private final String codigo;
+    private final String nome_curso;
+    private final int carga_horaria;
+    private final String professor_matricula;
 
     public Curso(String codigo, String nome_curso, int carga_horaria, String professor_matricula) {
         this.codigo = codigo;
