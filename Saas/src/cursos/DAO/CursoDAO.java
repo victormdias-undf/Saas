@@ -20,7 +20,11 @@ public class CursoDAO {
             stmt.setString(1, curso.getCodigo());
             stmt.setString(2, curso.getNome_curso());
             stmt.setInt(3, curso.getCarga_horaria());
-            stmt.setString(4, curso.getProfessor_matricula());
+            if (curso.getProfessor_matricula() == null || curso.getProfessor_matricula().isBlank()) {
+                stmt.setNull(4, java.sql.Types.VARCHAR);
+            } else {
+                stmt.setString(4, curso.getProfessor_matricula());
+            }
 
             stmt.executeUpdate();
             System.out.println("Curso inserido com sucesso!");
@@ -113,7 +117,11 @@ public class CursoDAO {
 
             stmt.setString(1, curso.getNome_curso());
             stmt.setInt(2, curso.getCarga_horaria());
-            stmt.setString(3, curso.getProfessor_matricula());
+            if (curso.getProfessor_matricula() == null || curso.getProfessor_matricula().isBlank()) {
+                stmt.setNull(3, java.sql.Types.VARCHAR);
+            } else {
+                stmt.setString(3, curso.getProfessor_matricula());
+            }
             stmt.setString(4, curso.getCodigo());
 
             stmt.executeUpdate();

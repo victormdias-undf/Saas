@@ -1,12 +1,14 @@
 package aluno;
-import javax.swing.*;
-import java.util.List;
 
+import cursos.DAO.MatriculaDAO;
+import cursos.model.Matricula;
+import java.util.Date;
+import java.util.List;
+import javax.swing.*;
 
 public class TelaAluno {
 
-
-    private EstudanteDAO estudanteDAO = new EstudanteDAO();
+    private final EstudanteDAO estudanteDAO = new EstudanteDAO();
 
 
     public void abrirMenuAluno() {
@@ -22,11 +24,23 @@ public class TelaAluno {
                     2 - Consultar por matrícula
                     3 - Consultar por nome
                     4 - Listar todos
+                    5 - Vincular aluno a um curso
                     0 - Voltar
                     """;
 
 
-            opcao = Integer.parseInt(JOptionPane.showInputDialog(menu));
+            String entrada = JOptionPane.showInputDialog(menu);
+            if (entrada == null || entrada.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Operação cancelada.");
+                return;
+            }
+
+            try {
+                opcao = Integer.parseInt(entrada);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(null, "Digite uma opção válida!");
+                opcao = -1;
+            }
 
 
             switch (opcao) {
@@ -41,6 +55,9 @@ public class TelaAluno {
                     break;
                 case 4:
                     listarTodos();
+                    break;
+                case 5:
+                    matricularAlunoEmCurso();
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Voltando ao menu principal...");
@@ -128,15 +145,28 @@ public class TelaAluno {
     }
 
 
+    private void matricularAlunoEmCurso() {
+        String matriculaEstudante = JOptionPane.showInputDialog("Digite a matrícula do aluno:");
+        String codigoCurso = JOptionPane.showInputDialog("Digite o código do curso:");
+
+        if (matriculaEstudante == null || codigoCurso == null || matriculaEstudante.isBlank() || codigoCurso.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Preencha matrícula e código do curso.");
+            return;
+        }
+
+        MatriculaDAO matriculaDAO = new MatriculaDAO();
+        matriculaDAO.inserirMatricula(new Matricula(0, matriculaEstudante, codigoCurso, new Date()));
+
+        JOptionPane.showMessageDialog(null, "Aluno vinculado ao curso com sucesso!");
+    }
+
     private void mostrarAlunoComOpcoes(Estudante estudante) {
         String mensagem = estudante.exibirDados()
                 + "\n\n1 - Editar"
                 + "\n2 - Excluir"
                 + "\n0 - Voltar";
 
-
-        int opcao = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
-
+        int opcao = lerOpcao(mensagem);
 
         if (opcao == 1) {
             editarAluno(estudante);
@@ -145,11 +175,33 @@ public class TelaAluno {
         }
     }
 
+    private int lerOpcao(String mensagem) {
+        while (true) {
+            String entrada = JOptionPane.showInputDialog(mensagem);
+            if (entrada == null) {
+                return 0;
+            }
+            if (entrada.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Digite uma opção válida!");
+                continue;
+            }
+            try {
+                return Integer.parseInt(entrada);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(null, "Digite uma opção válida!");
+            }
+        }
+    }
+
 
     private void editarAluno(Estudante estudante) {
         String novoNome = JOptionPane.showInputDialog("Digite o novo nome:", estudante.getNomeCompleto());
         String novaData = JOptionPane.showInputDialog("Digite a nova data de nascimento:", estudante.getDataNascimento());
 
+        if (novoNome == null || novaData == null || novoNome.isBlank() || novaData.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Nome e data de nascimento são obrigatórios.");
+            return;
+        }
 
         estudante.setNomeCompleto(novoNome);
         estudante.setDataNascimento(novaData);

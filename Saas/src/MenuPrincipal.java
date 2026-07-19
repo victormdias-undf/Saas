@@ -3,6 +3,7 @@ import cursos.tela.TelaCurso;
 import java.awt.*;
 import javax.swing.*;
 import professor.view.TelaProfessor;
+import relatorios.TelaRelatorios;
 
 public class MenuPrincipal extends JFrame {
 
@@ -19,12 +20,13 @@ public class MenuPrincipal extends JFrame {
         add(titulo, BorderLayout.NORTH);
 
         JPanel painelBotoes = new JPanel();
-        painelBotoes.setLayout(new GridLayout(4, 1, 10, 10));
+        painelBotoes.setLayout(new GridLayout(5, 1, 10, 10));
         painelBotoes.setBorder(BorderFactory.createEmptyBorder(20, 60, 20, 60));
 
         JButton btnAlunos = new JButton("Gerenciar Alunos");
         JButton btnCursos = new JButton("Gerenciar Cursos");
         JButton btnProfessores = new JButton("Gerenciar Professores");
+        JButton btnRelatorios = new JButton("Relatórios");
         JButton btnSair = new JButton("Sair");
 
         btnAlunos.addActionListener(e -> new TelaAluno().abrirMenuAluno());
@@ -33,11 +35,13 @@ public class MenuPrincipal extends JFrame {
             TelaProfessor telaProfessor = new TelaProfessor();
             telaProfessor.setVisible(true);
         });
+        btnRelatorios.addActionListener(e -> new TelaRelatorios().abrirTelaRelatorios());
         btnSair.addActionListener(e -> dispose());
 
         painelBotoes.add(btnAlunos);
         painelBotoes.add(btnCursos);
         painelBotoes.add(btnProfessores);
+        painelBotoes.add(btnRelatorios);
         painelBotoes.add(btnSair);
 
         add(painelBotoes, BorderLayout.CENTER);

@@ -5,6 +5,9 @@ CREATE DATABASE IF NOT EXISTS gerenciamentoEstudantil
 
 USE gerenciamentoEstudantil;
 
+-- Relacionamento 1:N: um professor pode ensinar vários cursos
+-- Relacionamento N:N: um estudante pode estar em vários cursos e um curso pode ter vários estudantes
+
 CREATE TABLE professor (
     matricula       VARCHAR(20)  PRIMARY KEY,
     nome_completo   VARCHAR(150) NOT NULL,

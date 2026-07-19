@@ -8,7 +8,7 @@ public class EstudanteDAO {
 
 
     public void cadastrar(Estudante estudante) {
-        String sql = "INSERT INTO estudantes (matricula, nome_completo, data_nascimento) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO estudante (matricula, nome_completo, data_nascimento) VALUES (?, ?, ?)";
 
 
         try {
@@ -35,7 +35,7 @@ public class EstudanteDAO {
 
 
     public Estudante consultarPorMatricula(String matricula) {
-        String sql = "SELECT * FROM estudantes WHERE matricula = ?";
+        String sql = "SELECT * FROM estudante WHERE matricula = ?";
 
 
         try {
@@ -82,7 +82,7 @@ public class EstudanteDAO {
         List<Estudante> lista = new ArrayList<>();
 
 
-        String sql = "SELECT * FROM estudantes WHERE nome_completo LIKE ?";
+        String sql = "SELECT * FROM estudante WHERE nome_completo LIKE ?";
 
 
         try {
@@ -122,7 +122,7 @@ public class EstudanteDAO {
 
 
     public void editar(Estudante estudante) {
-        String sql = "UPDATE estudantes SET nome_completo = ?, data_nascimento = ? WHERE matricula = ?";
+        String sql = "UPDATE estudante SET nome_completo = ?, data_nascimento = ? WHERE matricula = ?";
 
 
         try {
@@ -149,7 +149,7 @@ public class EstudanteDAO {
 
 
     public void excluir(String matricula) {
-        String sql = "DELETE FROM estudantes WHERE matricula = ?";
+        String sql = "DELETE FROM estudante WHERE matricula = ?";
 
 
         try {
@@ -177,7 +177,7 @@ public class EstudanteDAO {
         List<Estudante> lista = new ArrayList<>();
 
 
-        String sql = "SELECT * FROM estudantes";
+        String sql = "SELECT * FROM estudante";
 
 
         try {

@@ -13,7 +13,7 @@ public class ProfessorDAO {
 
     public void inserirProfessor(Professor professor) {
 
-        String sql = "INSERT INTO professor(nome, data_nascimento, especialidade, matricula) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO professor(nome_completo, data_nascimento, especialidade, matricula) VALUES (?,?,?,?)";
 
         try {
 
@@ -58,7 +58,7 @@ public class ProfessorDAO {
 
                 professor = new Professor();
 
-                professor.setNomeCompleto(rs.getString("nome"));
+                professor.setNomeCompleto(rs.getString("nome_completo"));
                 professor.setDataNascimento(rs.getDate("data_nascimento").toString());
                 professor.setEspecialidade(rs.getString("especialidade"));
                 professor.setMatricula(rs.getString("matricula"));
@@ -77,7 +77,7 @@ public class ProfessorDAO {
 
     public ArrayList<Professor> buscarPorNome(String nome) {
 
-        String sql = "SELECT * FROM professor WHERE nome ILIKE ?";
+        String sql = "SELECT * FROM professor WHERE nome_completo LIKE ?";
 
         ArrayList<Professor> lista = new ArrayList<>();
 
@@ -95,7 +95,7 @@ public class ProfessorDAO {
 
                 Professor professor = new Professor();
 
-                professor.setNomeCompleto(rs.getString("nome"));
+                professor.setNomeCompleto(rs.getString("nome_completo"));
                 professor.setDataNascimento(rs.getDate("data_nascimento").toString());
                 professor.setEspecialidade(rs.getString("especialidade"));
                 professor.setMatricula(rs.getString("matricula"));
@@ -116,7 +116,7 @@ public class ProfessorDAO {
 
     public ArrayList<Professor> listarTodos() {
 
-        String sql = "SELECT * FROM professor ORDER BY nome";
+        String sql = "SELECT * FROM professor ORDER BY nome_completo";
 
         ArrayList<Professor> lista = new ArrayList<>();
 
@@ -132,7 +132,7 @@ public class ProfessorDAO {
 
                 Professor professor = new Professor();
 
-                professor.setNomeCompleto(rs.getString("nome"));
+                professor.setNomeCompleto(rs.getString("nome_completo"));
                 professor.setDataNascimento(
                         rs.getDate("data_nascimento").toString());
                 professor.setEspecialidade(
@@ -156,7 +156,7 @@ public class ProfessorDAO {
 
     public void atualizarProfessor(Professor professor) {
 
-        String sql = "UPDATE professor SET nome=?, data_nascimento=?, especialidade=? WHERE matricula=?";
+        String sql = "UPDATE professor SET nome_completo=?, data_nascimento=?, especialidade=? WHERE matricula=?";
 
         try {
 
